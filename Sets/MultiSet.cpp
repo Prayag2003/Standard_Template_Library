@@ -32,11 +32,13 @@ int main()
     //  ************ FIND ***********
 
     // When Multiple Values are present , s.find() returns the iterator of the first value found ...
+    // Erase  --> O(1)
     auto it = s.find("abc");
     s.erase(it);
     print(s);
 
     // But it we write s.erase("abc") , it deletes all the strings "abc" ...
+    // Erase  --> O(logN)
     s.erase("abc");
     print(s);
 
