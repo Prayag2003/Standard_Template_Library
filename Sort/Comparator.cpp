@@ -12,29 +12,50 @@ void printVec(vector<int> &v)
 
 bool cmp(int a, int b)
 {
-    if (a > b)
+    if (a < b)
         return true;
     return false;
+}
+
+bool should_i_swap(pair<int, int> &a, pair<int, int> &b)
+{
+    if (a < b)
+        return true;
+    return false;
+}
+
+void printPair(vector<pair<int, int>> &v)
+{
+    for (auto &i : v)
+    {
+        cout << i.first << " " << i.second << "\n";
+    }
+    cout << "\n";
 }
 
 int main()
 {
     int n;
     cin >> n;
-    vector<int> a(n);
+    vector<pair<int, int>> a(n);
     for (int i = 0; i < n; ++i)
     {
-        cin >> a[i];
+        cin >> a[i].first >> a[i].second;
     }
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = i + 1; j < n; j++)
         {
-            if (cmp(a[i], a[j]))
+            if (should_i_swap(a[i], a[j]))
             {
                 swap(a[i], a[j]);
             }
         }
     }
-    printVec(a);
+    printPair(a);
+    sort(a.begin(), a.end());
+    printPair(a);
+
+    // Passing the Comp Funtion Argument
+    sort(a.begin(), a.end(), should_i_swap);
 }
